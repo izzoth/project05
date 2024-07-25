@@ -16,10 +16,7 @@ pipeline {
             steps {
                 try {
                     sh 'docker-compose up -d'
-                } catch (err) {
-                    echo 'Error starting containers: ${err.message}'
-                    error 'Container startup failed'
-                }
+                } 
             }
         }
     }
