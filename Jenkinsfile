@@ -14,11 +14,7 @@ pipeline {
                 sh 'docker-compose build'
             }
         }
- 
-	stage('Initialize'){
-        def dockerHome = tool 'myDocker'
-        env.PATH = "${dockerHome}/bin:${env.PATH}"
-    }
+
 
         stage('Start Containers') {
             steps {
