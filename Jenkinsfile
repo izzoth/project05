@@ -1,29 +1,19 @@
 pipeline {
     agent any
 
-    parameters {
-        booleanParam(name: 'rebuild', defaultValue: false, description: 'Rebuild images')
-    }
-
     stages {
-        stage('Build Images') {
+        stage('Build') {
             when {
-                expression { params.rebuild }
+                branch 'main' // Optional: Only build on master branch
             }
             steps {
-                sh 'docker-compose build'
+                // Add build steps if needed (e.g., npm install, maven build)
             }
         }
 
-
         stage('Start Containers') {
             steps {
-                try {
-                    sh 'docker-compose up -d'
-                } catch (err) {
-                    echo 'Error starting containers: ${err.message}'
-                    error 'Container startup failed'
-                }
+                sh 'docker-compose up -d'
             }
         }
     }
