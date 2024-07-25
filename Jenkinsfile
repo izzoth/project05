@@ -6,7 +6,7 @@ pipeline {
         }
     }
     environment {
-        DOCKER_HOST = 'tcp://172.18.0.2:2375'
+        DOCKER_HOST = 'tcp://localhost:2375'
     }
     stages {
         stage('Start Containers') {
