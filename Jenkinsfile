@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-        DOCKER_HOST = 'tcp://172.18.0.2:2375'
+        DOCKER_HOST = 'tcp://docker:2376'
     }  
 
   stages {
