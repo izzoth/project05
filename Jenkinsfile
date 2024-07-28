@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage ('Run Docker Compose') {
       steps {
-        sh 'docker-compose up -d'
+        sh '/var/jenkins_home/workspace/Docker-Node-Project05/docker-compose up -d'
       }
     }
   }
