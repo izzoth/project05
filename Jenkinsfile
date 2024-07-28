@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage ('Run Docker Compose') {
       steps{
-        sh '/var/www/html/docker-compose up -d'
+        sh '/usr/local/bin/docker-compose up --build'
       }
     }
   }
