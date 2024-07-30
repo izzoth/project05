@@ -11,7 +11,7 @@ pipeline {
                 script {
                     docker.image('docker:latest').inside('--privileged -v /var/run/docker.sock:/var/run/docker.sock') {
                         // Example of a Docker command
-                        sh 'docker --version'
+                        sh 'sudo docker --version'
                     }
                 }
             }
