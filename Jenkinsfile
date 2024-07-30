@@ -1,16 +1,38 @@
 pipeline {
-  agent any
+    agent any
+
     environment {
-      DOCKER_HOST = 'tcp://172.18.0.3:2375'
-      DOCKER_CERT_PATH = '/certs/client'
-      DOCKER_TLS_VERIFY = '1'  
+        DOCKER_TLS_VERIFY = '1'
+        DOCKER_HOST = 'tcp://docker:2376'
+        DOCKER_CERT_PATH = '/certs/client'
     }
-  stages {
-    stage ('Run Docker Compose') {
-      steps{
-        sh 'docker-compose up -d'
-        echo 'Docker-compose-build Build Image Completed'
-      }
+
+    stages {
+       stage('Build') {
+            steps {
+                script {
+                    // Build the Docker images
+                    sh 'docker-compose build'
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                script {
+                    // Run the Docker containers
+                    sh 'docker-compose up -d'
+                }
+            }
+        }
     }
-  }
+
+    post {
+        always {
+            // Clean up actions, if necessary
+            script {
+                sh 'docker-compose down'
+            }
+        }
+    }
 }
