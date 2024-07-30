@@ -1,9 +1,6 @@
 pipeline {
     agent any {
-	docker {
-            image 'docker:latest'
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
-        }
+	
     environment {
         DOCKER_TLS_VERIFY = '1'
         DOCKER_CERT_PATH = '/certs/client'
@@ -13,12 +10,13 @@ pipeline {
     stages {
         stage('Deploy') {
             steps {
-                script {
-                    // Run the Docker containers
-                    sh 'docker-compose up -d'
+                script {docker.image('docker:latest').inside('--privileged -v /var/run/docker.sock:/var/run/docker.sock') {
+                        // Example of a Docker command
+                        sh 'docker --version'
                 }
             }
         }
     }
   }
+ }
 }
