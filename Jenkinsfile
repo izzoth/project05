@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     // Run the Docker containers
-                    sh 'sudo docker-compose up -d'
+                    sh 'docker-compose up -d'
                 }
             }
         }
