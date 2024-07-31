@@ -9,7 +9,7 @@ pipeline {
         stage('Build') {
             steps {
                         // Example of a Docker command
-                        sh 'docker --version'
+                        sh 'docker-compose up -d'
                     }
                 }
             }
